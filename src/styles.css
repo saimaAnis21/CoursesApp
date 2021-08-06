@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+.m-10{
+  margin:10px ;
+}
+
+.mb-10{
+  margin-bottom: 10px;
+}
+
+.mt-50{
+  margin-top: 50px;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.txt-align{
+  text-align: center;
+}
+
+.p-20{
+  padding: 20px;
+}
