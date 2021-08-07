@@ -46,45 +46,35 @@ const SignInForm = (props) => {
   };
 
   return (
-    <div className=" p-20 txt-align mx-auto mt-50 w-50 border border-primary rounded">
+    <div className=" p-20 txt-align mx-auto mt-50 ">
       <p>
         {msgs}
       </p>
       <p>
         Don&#39;t have an account!
-        <a className="" href="/signup">  Sign Up!</a>
+        {' '}
+        <a href="/signup">Sign up!</a>
       </p>
       <form className="">
-        <div className="mt-10 mb-10 d-flex flex-column align-items-center mx-auto w-75 mx-auto">
+        <div className="mt-10 mb-10 d-flex flex-column align-items-center mx-auto ">
 
-          {/* <div className="d-flex justify-content-between w-75 mb-10">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              onChange={(e) => inputChange(e)}
-            />
-          </div> */}
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text" id="basic-addon1">Email</span>
+              <span className="input-group-text">Email</span>
             </div>
             <input type="text" onChange={(e) => inputChange(e)} id="email" name="email" className="form-control" placeholder="" aria-describedby="basic-addon1" />
           </div>
 
-          <div className="d-flex justify-content-between w-75 mb-10">
-            <span>Password:</span>
-            <input
-              type="text"
-              id="password"
-              name="password"
-              onChange={(e) => inputChange(e)}
-            />
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Password</span>
+            </div>
+            <input type="text" onChange={(e) => inputChange(e)} id="password" name="password" className="form-control" />
           </div>
 
           <button
             type="submit"
-            className="btn btn-primary btn-lg btn-block"
+            className="btn btn-dark btn-lg btn-block"
             onClick={(e) => btnClick(e)}
           >
             Sign In

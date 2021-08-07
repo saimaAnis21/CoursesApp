@@ -18,6 +18,7 @@ const CourseDisplay = (props) => {
             <th scope="col">Course Name</th>
             <th scope="col">Course Duration</th>
             <th scope="col">Course Category</th>
+            <th scope="col">DELETE</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,14 @@ const CourseDisplay = (props) => {
               <td>{course.title}</td>
               <td>{course.duration}</td>
               <td>{course.category_name_id}</td>
+              <td>
+                <button
+                  type="submit"
+                  className="btn btn-dark btn-sm btn-block"
+                >
+                  DEL
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

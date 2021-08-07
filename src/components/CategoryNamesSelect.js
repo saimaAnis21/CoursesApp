@@ -1,17 +1,18 @@
 import {
   PropTypes,
 } from 'prop-types';
+import '../styles.css';
 
 const CategoryNamesSelect = (props) => {
   const { options, onInputChange } = props;
 
   return (
 
-    <div className="input-group mb-3">
+    <div className="input-group mb-3 ">
       <div className="input-group-prepend">
-        <span className="input-group-text">Categories</span>
+        <span className="input-group-text ">Categories</span>
       </div>
-      <select className="custom-select" name="category" id="category" onChange={(e) => onInputChange(e)}>
+      <select className="custom-select w-50" name="category" id="category" onChange={(e) => onInputChange(e)}>
         {options.map((opt) => (
           <option
             key={opt.id}
