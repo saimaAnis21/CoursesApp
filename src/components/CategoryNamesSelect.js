@@ -1,18 +1,21 @@
-import { PropTypes } from 'prop-types';
+import {
+  PropTypes,
+} from 'prop-types';
 
 const CategoryNamesSelect = (props) => {
-  const { options, name, changeFilter } = props;
+  const { options, onInputChange } = props;
 
   return (
-    <div>
-      <p>
-        {name}
-      </p>
-      <select onChange={(e) => changeFilter(name, e.target.value)}>
+
+    <div className="input-group mb-3">
+      <div className="input-group-prepend">
+        <span className="input-group-text">Categories</span>
+      </div>
+      <select className="custom-select" name="category" id="category" onChange={(e) => onInputChange(e)}>
         {options.map((opt) => (
           <option
             key={opt.id}
-            value={opt.name}
+            value={opt.id}
           >
             {opt.name}
           </option>
@@ -23,10 +26,23 @@ const CategoryNamesSelect = (props) => {
   );
 };
 
-FilterDropDown.propTypes = {
+CategoryNamesSelect.propTypes = {
   options: PropTypes.instanceOf(Array).isRequired,
-  name: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 export default CategoryNamesSelect;
+
+// <div>
+// { /* <select name="category" id="category" onChange={(e) => onInputChange(e)}>
+//         {options.map((opt) => (
+//           <option
+//             key={opt.id}
+//             value={opt.id}
+//           >
+//             {opt.name}
+//           </option>
+//         ))}
+//         ;
+//       </select> */ }
+// </div>
