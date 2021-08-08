@@ -30,7 +30,7 @@ const CourseDisplay = (props) => {
               <td>
                 <button
                   type="submit"
-                  className="btn btn-dark btn-sm btn-block"
+                  className="btn btn-danger btn-sm btn-block"
                 >
                   DEL
                 </button>
