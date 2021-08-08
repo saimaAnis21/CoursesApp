@@ -9,4 +9,17 @@ const SaveAuthToken = (authToken) => {
   localStorage.setItem('authToken', str);
 };
 
-export { GetAuthToken, SaveAuthToken };
+const GetEmail = () => {
+  const str = localStorage.getItem('email');
+  const email = JSON.parse(str);
+  return email;
+};
+
+const SaveEmail = (email) => {
+  const str = JSON.stringify(email);
+  localStorage.setItem('email', str);
+};
+
+export {
+  GetAuthToken, SaveAuthToken, GetEmail, SaveEmail,
+};

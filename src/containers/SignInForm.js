@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchAuthToken from '../logic/fetchAuthToken';
-import { SaveAuthToken } from '../logic/localStorage';
+import { SaveAuthToken, SaveEmail } from '../logic/localStorage';
 import { changeLogInfoAction } from '../actions/index';
 import '../styles.css';
 
@@ -30,6 +30,7 @@ const SignInForm = (props) => {
     const response = await fetchAuthToken(queries, 'signin');
     if (response.auth_token) {
       SaveAuthToken(response.auth_token);
+      SaveEmail(email);
       history.push('/my_courses');
       logInfo({
         logged_in: true,
@@ -47,6 +48,10 @@ const SignInForm = (props) => {
 
   return (
     <div className=" p-20 txt-align mx-auto mt-50 ">
+      <div>
+        {/* { info.logged_in ? <CourseAddForm /> : <a className="" href="/signin">
+      Please Sign in </a>} */}
+      </div>
       <p>
         {msgs}
       </p>

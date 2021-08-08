@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { changeCoursesAction } from '../actions/index';
 import fetchCourses from '../logic/fetchCourses';
 import CourseAddForm from '../components/CourseAddForm';
 import CourseDisplay from '../components/CourseDisplay';
-import { GetAuthToken } from '../logic/localStorage';
+import { GetAuthToken, GetEmail } from '../logic/localStorage';
 import '../styles.css';
 
 const Course = (props) => {
-  const { info, putCourses } = props;
+  const [hasToken, setHasToken] = useState();
+  const [email, setEmail] = useState();
+  const { putCourses } = props;
 
   const getCourses = async (token) => {
     const response = await fetchCourses(token);
@@ -19,21 +21,29 @@ const Course = (props) => {
 
   useEffect(() => {
     const token = GetAuthToken();
-    getCourses(token);
+    if (token === null) {
+      setHasToken(false);
+    } else {
+      setHasToken(true);
+      setEmail(GetEmail());
+      getCourses(token);
+    }
   });
 
   return (
     <div className="txt-align mt-50">
-      <p>
-        <span>
-          {info.email}
-        </span>
-        is logged in
-      </p>
-      {/* { info.logged_in ? <CourseAddForm /> : <a className="" href="/signin">
-      Please Sign in </a>} */}
-      <CourseAddForm />
-      <CourseDisplay />
+
+      { hasToken ? (
+        <p>
+          {email}
+          {' '}
+          is logged in!!
+        </p>
+      ) : <p>Please Sign in or Sign up if you do not have an account!!</p>}
+      { hasToken ? <CourseAddForm /> : <p><a href="/signin">Sign in!</a></p>}
+      { hasToken ? <CourseDisplay /> : (
+        <p><a href="/signup">Sign up!</a></p>
+      )}
     </div>
   );
 };
@@ -44,17 +54,17 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const mapStateToProps = (state) => ({
-  info: state.log_info,
-});
+// const mapStateToProps = (state) => ({
+//   info: state.log_info,
+// });
 
 Course.propTypes = {
-  info: PropTypes.shape({
-    logged_in: PropTypes.bool,
-    email: PropTypes.string,
-  }).isRequired,
+  // info: PropTypes.shape({
+  //   logged_in: PropTypes.bool,
+  //   email: PropTypes.string,
+  // }).isRequired,
   putCourses: PropTypes.func.isRequired,
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Course);
+export default connect(null, mapDispatchToProps)(Course);
