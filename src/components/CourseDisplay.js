@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import delCourse from '../logic/delCourse';
+import { GetAuthToken } from '../logic/localStorage';
 import '../styles.css';
 
 const CourseDisplay = (props) => {
@@ -9,6 +11,13 @@ const CourseDisplay = (props) => {
   useEffect(() => {
     console.log(courses);
   });
+
+  const DeleteCourse = async (e, courseID) => {
+    e.preventDefault();
+    const token = GetAuthToken();
+    const response = await delCourse(courseID, token);
+    console.log(response);
+  };
 
   return (
     <div>
@@ -31,6 +40,8 @@ const CourseDisplay = (props) => {
                 <button
                   type="submit"
                   className="btn btn-danger btn-sm btn-block"
+                  onClick={(e) => DeleteCourse(e, course.id)}
+
                 >
                   DEL
                 </button>
