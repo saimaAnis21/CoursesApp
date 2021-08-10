@@ -37,7 +37,7 @@ const SignInForm = (props) => {
         email,
       });
     } else if (response.message) {
-      setMsgs(response.message);
+      setMsgs(`${response.message}!!`);
     }
   };
 
@@ -52,7 +52,7 @@ const SignInForm = (props) => {
         {/* { info.logged_in ? <CourseAddForm /> : <a className="" href="/signin">
       Please Sign in </a>} */}
       </div>
-      <p>
+      <p className="text-danger">
         {msgs}
       </p>
       <p>

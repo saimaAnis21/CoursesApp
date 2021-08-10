@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { changeCoursesAction } from '../actions/index';
-import fetchCourses from '../logic/fetchCourses';
 import CourseAddForm from '../components/CourseAddForm';
 import CourseDisplay from '../components/CourseDisplay';
 import { GetAuthToken, GetEmail } from '../logic/localStorage';
 import '../styles.css';
 
-const Course = (props) => {
+const Course = () => {
   const [hasToken, setHasToken] = useState();
   const [email, setEmail] = useState();
-  const { putCourses } = props;
-
-  const getCourses = async (token) => {
-    const response = await fetchCourses(token);
-    console.log(response);
-    putCourses(response);
-  };
 
   useEffect(() => {
     const token = GetAuthToken();
@@ -26,15 +15,14 @@ const Course = (props) => {
     } else {
       setHasToken(true);
       setEmail(GetEmail());
-      getCourses(token);
     }
   });
 
   return (
-    <div className="txt-align mt-50">
+    <div className="txt-align mt-10">
 
       { hasToken ? (
-        <p>
+        <p className="text-success">
           {email}
           {' '}
           is logged in!!
@@ -48,23 +36,4 @@ const Course = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  putCourses: (data) => {
-    dispatch(changeCoursesAction(data));
-  },
-});
-
-// const mapStateToProps = (state) => ({
-//   info: state.log_info,
-// });
-
-Course.propTypes = {
-  // info: PropTypes.shape({
-  //   logged_in: PropTypes.bool,
-  //   email: PropTypes.string,
-  // }).isRequired,
-  putCourses: PropTypes.func.isRequired,
-
-};
-
-export default connect(null, mapDispatchToProps)(Course);
+export default Course;

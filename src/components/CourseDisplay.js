@@ -1,15 +1,27 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { changeCoursesAction } from '../actions/index';
+import fetchCourses from '../logic/fetchCourses';
 import delCourse from '../logic/delCourse';
 import { GetAuthToken } from '../logic/localStorage';
 import '../styles.css';
 
 const CourseDisplay = (props) => {
-  const { courses } = props;
+  const { courses, putCourses } = props;
+
+  const getCourses = async () => {
+    try {
+      const token = GetAuthToken();
+      const response = await fetchCourses(token);
+      putCourses(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    console.log(courses);
+    getCourses();
   });
 
   const DeleteCourse = async (e, courseID) => {
@@ -17,11 +29,12 @@ const CourseDisplay = (props) => {
     const token = GetAuthToken();
     const response = await delCourse(courseID, token);
     console.log(response);
+    getCourses();
   };
 
   return (
-    <div>
-      <table className="table table-striped mt-10 mx-auto w-75">
+    <div className="mx-auto ">
+      <table className="table table-striped mt-10 ">
         <thead className="thead-dark">
           <tr>
             <th scope="col">Course Name</th>
@@ -35,7 +48,7 @@ const CourseDisplay = (props) => {
             <tr key={course.id}>
               <td>{course.title}</td>
               <td>{course.duration}</td>
-              <td>{course.category_name_id}</td>
+              <td>{course.category}</td>
               <td>
                 <button
                   type="submit"
@@ -58,9 +71,15 @@ const mapStateToProps = (state) => ({
   courses: state.courses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  putCourses: (data) => {
+    dispatch(changeCoursesAction(data));
+  },
+});
+
 CourseDisplay.propTypes = {
   courses: PropTypes.instanceOf(Array).isRequired,
-
+  putCourses: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(CourseDisplay);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDisplay);

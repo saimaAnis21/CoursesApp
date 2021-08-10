@@ -13,6 +13,7 @@ const CourseAddForm = (props) => {
   const [duration, setDuration] = useState();
   const [category, setCategory] = useState();
   const [categorynames, setCategoryNames] = useState([{ id: 0, name: '--' }]);
+  const [errormsg, setErrormsg] = useState();
   const { putCourse } = props;
 
   const getData = async () => {
@@ -33,7 +34,6 @@ const CourseAddForm = (props) => {
     } else if (e.target.name === 'category') {
       setCategory(e.target.value);
     }
-    console.log(category);
   };
 
   const createCourse = async () => {
@@ -44,22 +44,27 @@ const CourseAddForm = (props) => {
     };
     const token = GetAuthToken();
     const response = await addCourse(obj, token);
-    console.log(response);
-    putCourse(response);
+
+    if (response.message) {
+      setErrormsg(response.message);
+    } else {
+      putCourse(response);
+    }
   };
 
   const btnClick = (e) => {
     e.preventDefault();
     if (category === undefined || title === undefined || duration === undefined) {
-      console.log('Category, Title and Duration are mandatory fields');
+      setErrormsg('Category, Title and Duration are mandatory fields!!');
     } else {
       createCourse();
     }
   };
 
   return (
-    <div className=" p-20 txt-align mx-auto mt-50 ">
+    <div className=" p-20 txt-align mx-auto mt-10 ">
       <h1>Create a course!</h1>
+      <p className="text-danger">{errormsg}</p>
       <form className="">
         <div className="mt-10 mb-10 d-flex flex-column ">
 

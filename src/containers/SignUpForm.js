@@ -44,7 +44,7 @@ const SignUpForm = (props) => {
         email,
       });
     } else if (response.message) {
-      setMsgs(response.message);
+      setMsgs(`${response.message}!!`);
     }
   };
 
@@ -55,7 +55,7 @@ const SignUpForm = (props) => {
 
   return (
     <div className=" p-20 txt-align mx-auto mt-50 ">
-      <p>
+      <p className="text-danger">
         {msgs}
       </p>
       <p>
