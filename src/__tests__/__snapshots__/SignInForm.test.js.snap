@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sign In Form renders correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class=" p-20 txt-align mx-auto mt-50 "
+      >
+        <div />
+        <p
+          class="text-danger"
+        />
+        <p>
+          Don't have an account!
+           
+          <a
+            href="/signup"
+          >
+            Sign up!
+          </a>
+        </p>
+        <form
+          class=""
+        >
+          <div
+            class="mt-10 mb-10 d-flex flex-column align-items-center mx-auto "
+          >
+            <div
+              class="input-group mb-3"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Email
+                </span>
+              </div>
+              <input
+                aria-describedby="basic-addon1"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder=""
+                type="text"
+              />
+            </div>
+            <div
+              class="input-group mb-3"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Password
+                </span>
+              </div>
+              <input
+                class="form-control"
+                id="password"
+                name="password"
+                type="text"
+              />
+            </div>
+            <button
+              class="btn btn-dark btn-lg btn-block"
+              type="submit"
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class=" p-20 txt-align mx-auto mt-50 "
+    >
+      <div />
+      <p
+        class="text-danger"
+      />
+      <p>
+        Don't have an account!
+         
+        <a
+          href="/signup"
+        >
+          Sign up!
+        </a>
+      </p>
+      <form
+        class=""
+      >
+        <div
+          class="mt-10 mb-10 d-flex flex-column align-items-center mx-auto "
+        >
+          <div
+            class="input-group mb-3"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Email
+              </span>
+            </div>
+            <input
+              aria-describedby="basic-addon1"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder=""
+              type="text"
+            />
+          </div>
+          <div
+            class="input-group mb-3"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Password
+              </span>
+            </div>
+            <input
+              class="form-control"
+              id="password"
+              name="password"
+              type="text"
+            />
+          </div>
+          <button
+            class="btn btn-dark btn-lg btn-block"
+            type="submit"
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

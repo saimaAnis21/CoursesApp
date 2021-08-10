@@ -10,7 +10,6 @@ const addCourse = async (obj, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     data = await response.json();
   } catch (e) {
     data = 'ERROR';

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCourseAction } from '../actions/index';
 import { GetAuthToken } from '../logic/localStorage';
-import fetchCategoryNames from '../logic/fetchCategoryNames';
 import addCourse from '../logic/addCourse';
 import CategoryNamesSelect from './CategoryNamesSelect';
 import '../styles.css';
@@ -12,21 +11,11 @@ const CourseAddForm = (props) => {
   const [title, setTitle] = useState();
   const [duration, setDuration] = useState();
   const [category, setCategory] = useState();
-  const [categorynames, setCategoryNames] = useState([{ id: 0, name: '--' }]);
   const [errormsg, setErrormsg] = useState();
   const { putCourse } = props;
 
-  const getData = async () => {
-    const catnames = await fetchCategoryNames();
-    setCategoryNames(catnames);
-    setCategory(catnames[0].id);
-  };
-
-  useEffect(() => {
-    getData();
-  });
-
   const inputChange = (e) => {
+    setErrormsg('');
     if (e.target.name === 'title') {
       setTitle(e.target.value);
     } else if (e.target.name === 'duration') {
@@ -44,7 +33,6 @@ const CourseAddForm = (props) => {
     };
     const token = GetAuthToken();
     const response = await addCourse(obj, token);
-
     if (response.message) {
       setErrormsg(response.message);
     } else {
@@ -83,7 +71,7 @@ const CourseAddForm = (props) => {
           </div>
 
           <div className="d-flex justify-content-between w-75 mb-10">
-            <CategoryNamesSelect options={categorynames} onInputChange={inputChange} />
+            <CategoryNamesSelect onInputChange={inputChange} />
           </div>
 
           <button
