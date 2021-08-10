@@ -6,7 +6,9 @@ A  ![](https://img.shields.io/badge/Microverse-blueviolet)  final capstone proje
 A mobile version web application for instructors to create crash courses
 
 ![](screenshots/cc-signin.png)
+
 ![](screenshots/cc-signup.png)
+
 ![](screenshots/cc-display.png)
 
 ## Built With
