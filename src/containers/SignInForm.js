@@ -55,11 +55,6 @@ const SignInForm = (props) => {
       <p className="text-danger">
         {msgs}
       </p>
-      <p>
-        Don&#39;t have an account!
-        {' '}
-        <a href="/signup">Sign up!</a>
-      </p>
       <form className="">
         <div className="mt-10 mb-10 d-flex flex-column align-items-center mx-auto ">
 

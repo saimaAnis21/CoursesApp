@@ -33,3 +33,11 @@ body {
 .wide-50 {
   width: 400px;
 }
+
+.active-link {
+  color: green;  
+}
+
+.hidden{
+  display:inline
+}
