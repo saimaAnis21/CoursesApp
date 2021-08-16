@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchAuthToken from '../logic/fetchAuthToken';
-import { SaveAuthToken } from '../logic/localStorage';
+import { SaveAuthToken, SaveEmail } from '../logic/localStorage';
 import { changeLogInfoAction } from '../actions/index';
 import '../styles.css';
 
@@ -38,6 +38,7 @@ const SignUpForm = (props) => {
     const response = await fetchAuthToken(queries, 'signup');
     if (response.auth_token) {
       SaveAuthToken(response.auth_token);
+      SaveEmail(email);
       history.push('/my_courses');
       logInfo({
         logged_in: true,
@@ -84,14 +85,14 @@ const SignUpForm = (props) => {
             <div className="input-group-prepend">
               <span className="input-group-text">Password</span>
             </div>
-            <input type="text" onChange={(e) => inputChange(e)} id="password" name="password" className="form-control" />
+            <input type="password" onChange={(e) => inputChange(e)} id="password" name="password" className="form-control" />
           </div>
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">Confirm Password</span>
             </div>
-            <input type="text" onChange={(e) => inputChange(e)} id="pwd" name="pwd" className="form-control" />
+            <input type="password" onChange={(e) => inputChange(e)} id="pwd" name="pwd" className="form-control" />
           </div>
 
           <button

@@ -74,7 +74,7 @@ const SignInForm = (props) => {
             <div className="input-group-prepend">
               <span className="input-group-text">Password</span>
             </div>
-            <input type="text" onChange={(e) => inputChange(e)} id="password" name="password" className="form-control" />
+            <input type="password" onChange={(e) => inputChange(e)} id="password" name="password" className="form-control" />
           </div>
 
           <button

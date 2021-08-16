@@ -1,10 +1,23 @@
+import baseURL from './variables';
+
 const fetchAuthToken = async (obj, form) => {
-  // console.log(obj.name + obj.email + obj.password + obj.pwd);
+  let params = { };
   let url = '';
+
   if (form === 'signup') {
-    url = `https://course-api-101.herokuapp.com/signup?name=${obj.name}&email=${obj.email}&password=${obj.password}&password_confirmation=${obj.pwd}`;
+    url = `${baseURL}/signup?`;
+    params = {
+      name: obj.name,
+      email: obj.email,
+      password: obj.password,
+      password_confirmation: obj.pwd,
+    };
   } else if (form === 'signin') {
-    url = `https://course-api-101.herokuapp.com/auth/login?email=${obj.email}&password=${obj.password}`;
+    url = `${baseURL}/authentication?`;
+    params = {
+      email: obj.email,
+      password: obj.password,
+    };
   }
 
   let data = {};
@@ -12,6 +25,10 @@ const fetchAuthToken = async (obj, form) => {
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(params),
     });
 
     data = await response.json();

@@ -1,5 +1,7 @@
+import baseURL from './variables';
+
 const fetchCategoryNames = async () => {
-  const url = 'https://course-api-101.herokuapp.com/category_names';
+  const url = `${baseURL}/category_names`;
 
   let data = {};
   try {

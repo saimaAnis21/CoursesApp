@@ -1,9 +1,10 @@
+import baseURL from './variables';
+
 const delCourse = async (courseID, token) => {
-  const url = `https://course-api-101.herokuapp.com/courses/${courseID}`;
+  const url = `${baseURL}/courses/${courseID}`;
 
   let data = {};
   try {
-    // const response = await
     fetch(url, {
       method: 'DELETE',
       mode: 'cors',
@@ -13,7 +14,6 @@ const delCourse = async (courseID, token) => {
     });
 
     data = 'SUCCESS';
-    // await response.json();
   } catch (e) {
     data = 'ERROR';
   }
