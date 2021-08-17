@@ -6,9 +6,9 @@ const state = {
 
   courses: [{
     id: 0,
-    title: 'Example1',
-    duration: 0.5,
-    category: 'Example1',
+    title: '',
+    duration: '',
+    category: '',
   }],
 
 };

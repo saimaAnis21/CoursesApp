@@ -19,7 +19,7 @@ const CategoryNamesSelect = (props) => {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <div className="input-group mb-3 ">

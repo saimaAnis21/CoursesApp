@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { changeCoursesAction } from '../actions/index';
 import fetchCourses from '../logic/fetchCourses';
-import delCourse from '../logic/delCourse';
+// import delCourse from '../logic/delCourse';
 import { GetAuthToken } from '../logic/localStorage';
+import DelBtn from './DelBtn';
 import '../styles.css';
 
 const CourseDisplay = (props) => {
@@ -21,16 +22,19 @@ const CourseDisplay = (props) => {
   };
 
   useEffect(() => {
-    getCourses();
-  });
+    if (courses[0].id === 0) {
+      getCourses();
+    }
+    console.log(courses);
+  }, [courses]);
 
-  const DeleteCourse = async (e, courseID) => {
-    e.preventDefault();
-    const token = GetAuthToken();
-    const response = await delCourse(courseID, token);
-    console.log(response);
-    getCourses();
-  };
+  // const DeleteCourse = async (e, courseID) => {
+  //   e.preventDefault();
+  //   const token = GetAuthToken();
+  //   const response = await delCourse(courseID, token);
+  //   console.log(response);
+  //   getCourses();
+  // };
 
   return (
     <div className="mx-auto ">
@@ -50,14 +54,15 @@ const CourseDisplay = (props) => {
               <td>{course.duration}</td>
               <td>{course.category}</td>
               <td>
-                <button
+                {/* <button
                   type="submit"
                   className="btn btn-danger btn-sm btn-block"
                   onClick={(e) => DeleteCourse(e, course.id)}
 
                 >
                   DEL
-                </button>
+                </button> */}
+                <DelBtn id={course.id} />
               </td>
             </tr>
           ))}

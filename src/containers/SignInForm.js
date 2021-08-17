@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchAuthToken from '../logic/fetchAuthToken';
 import { SaveAuthToken, SaveEmail } from '../logic/localStorage';
-import { changeLogInfoAction } from '../actions/index';
+import fetchCourses from '../logic/fetchCourses';
+import { changeCoursesAction } from '../actions/index';
+// import { changeLogInfoAction } from '../actions/index';
 import '../styles.css';
 
 const SignInForm = (props) => {
@@ -12,13 +14,23 @@ const SignInForm = (props) => {
   const [password, setPassword] = useState();
   const [msgs, setMsgs] = useState();
   const history = useHistory();
-  const { logInfo } = props;
+  const { putCourses } = props;
 
   const inputChange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value);
     } else if (e.target.name === 'password') {
       setPassword(e.target.value);
+    }
+  };
+
+  const getCourses = async (token) => {
+    try {
+      // const token = GetAuthToken();
+      const response = await fetchCourses(token);
+      putCourses(response);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -31,11 +43,12 @@ const SignInForm = (props) => {
     if (response.auth_token) {
       SaveAuthToken(response.auth_token);
       SaveEmail(email);
+      getCourses(response.auth_token);
       history.push('/my_courses');
-      logInfo({
-        logged_in: true,
-        email,
-      });
+      // logInfo({
+      //   logged_in: true,
+      //   email,
+      // });
     } else if (response.message) {
       setMsgs(`${response.message}!!`);
     }
@@ -86,14 +99,21 @@ const SignInForm = (props) => {
   );
 };
 
+// const mapDispatchToProps = (dispatch) => ({
+//   logInfo: (info) => {
+//     dispatch(changeLogInfoAction(info));
+//   },
+// });
+
 const mapDispatchToProps = (dispatch) => ({
-  logInfo: (info) => {
-    dispatch(changeLogInfoAction(info));
+  putCourses: (data) => {
+    dispatch(changeCoursesAction(data));
   },
 });
 
 SignInForm.propTypes = {
-  logInfo: PropTypes.func.isRequired,
+  // logInfo: PropTypes.func.isRequired,
+  putCourses: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(SignInForm);

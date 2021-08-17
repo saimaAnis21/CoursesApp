@@ -12,17 +12,11 @@ const CourseAddForm = (props) => {
   const [duration, setDuration] = useState();
   const [category, setCategory] = useState();
   const [errormsg, setErrormsg] = useState();
-  const { putCourse } = props;
+  const { addCors } = props;
 
   const inputChange = (e) => {
     setErrormsg('');
-    if (e.target.name === 'title') {
-      setTitle(e.target.value);
-    } else if (e.target.name === 'duration') {
-      setDuration(e.target.value);
-    } else if (e.target.name === 'category') {
-      setCategory(e.target.value);
-    }
+    setCategory(e.target.value);
   };
 
   const createCourse = async () => {
@@ -36,7 +30,8 @@ const CourseAddForm = (props) => {
     if (response.message) {
       setErrormsg(response.message);
     } else {
-      putCourse(response);
+      console.log(response[0]);
+      addCors(response[0]);
     }
   };
 
@@ -60,14 +55,14 @@ const CourseAddForm = (props) => {
             <div className="input-group-prepend">
               <span className="input-group-text" id="basic-addon1">Course Title</span>
             </div>
-            <input type="text" onChange={(e) => inputChange(e)} id="title" name="title" className="form-control" placeholder="e.g. Crash Course in Java" aria-describedby="basic-addon1" />
+            <input type="text" onChange={(e) => setTitle(e.target.value)} id="title" name="title" className="form-control" placeholder="e.g. Crash Course in Java" aria-describedby="basic-addon1" />
           </div>
 
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text" id="basic-addon1">Duration(hrs)</span>
             </div>
-            <input type="text" onChange={(e) => inputChange(e)} id="duration" name="duration" className="form-control" placeholder="e.g. 1.0 or 2.5" aria-describedby="basic-addon1" />
+            <input type="text" onChange={(e) => setDuration(e.target.value)} id="duration" name="duration" className="form-control" placeholder="e.g. 1.0 or 2.5" aria-describedby="basic-addon1" />
           </div>
 
           <div className="d-flex justify-content-between w-75 mb-10">
@@ -89,14 +84,14 @@ const CourseAddForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  putCourse: (data) => {
+  addCors: (data) => {
     dispatch(addCourseAction(data));
   },
 });
 
 CourseAddForm.propTypes = {
 
-  putCourse: PropTypes.func.isRequired,
+  addCors: PropTypes.func.isRequired,
 
 };
 
