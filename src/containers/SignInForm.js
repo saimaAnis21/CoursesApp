@@ -6,7 +6,6 @@ import fetchAuthToken from '../logic/fetchAuthToken';
 import { SaveAuthToken, SaveEmail } from '../logic/localStorage';
 import fetchCourses from '../logic/fetchCourses';
 import { changeCoursesAction } from '../actions/index';
-// import { changeLogInfoAction } from '../actions/index';
 import '../styles.css';
 
 const SignInForm = (props) => {
@@ -26,7 +25,6 @@ const SignInForm = (props) => {
 
   const getCourses = async (token) => {
     try {
-      // const token = GetAuthToken();
       const response = await fetchCourses(token);
       putCourses(response);
     } catch (e) {

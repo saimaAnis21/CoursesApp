@@ -30,7 +30,6 @@ const CourseAddForm = (props) => {
     if (response.message) {
       setErrormsg(response.message);
     } else {
-      console.log(response[0]);
       addCors(response[0]);
     }
   };
