@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCourseAction } from '../actions/index';
@@ -8,16 +8,11 @@ import CategoryNamesSelect from './CategoryNamesSelect';
 import '../styles.css';
 
 const CourseAddForm = (props) => {
-  const [title, setTitle] = useState();
-  const [duration, setDuration] = useState();
-  const [category, setCategory] = useState();
-  const [errormsg, setErrormsg] = useState();
+  const [title, setTitle] = useState('');
+  const [duration, setDuration] = useState(0);
+  const [category, setCategory] = useState(0);
+  const [errormsg, setErrormsg] = useState('');
   const { addCors } = props;
-
-  const inputChange = (e) => {
-    setErrormsg('');
-    setCategory(e.target.value);
-  };
 
   const createCourse = async () => {
     const obj = {
@@ -30,6 +25,7 @@ const CourseAddForm = (props) => {
     if (response.message) {
       setErrormsg(response.message);
     } else {
+      setErrormsg(response.message);
       addCors(response[0]);
     }
   };
@@ -42,6 +38,10 @@ const CourseAddForm = (props) => {
       createCourse();
     }
   };
+
+  useEffect(() => {
+    setErrormsg('');
+  }, []);
 
   return (
     <div className=" p-20 txt-align mx-auto mt-10 ">
@@ -65,7 +65,7 @@ const CourseAddForm = (props) => {
           </div>
 
           <div className="d-flex justify-content-between w-75 mb-10">
-            <CategoryNamesSelect onInputChange={inputChange} />
+            <CategoryNamesSelect onInputChange={(value) => setCategory(value)} />
           </div>
 
           <button

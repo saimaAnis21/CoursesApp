@@ -26,7 +26,7 @@ const CategoryNamesSelect = (props) => {
       <div className="input-group-prepend">
         <span className="input-group-text ">Categories</span>
       </div>
-      <select className="custom-select w-50" name="category" id="category" onChange={(e) => onInputChange(e)}>
+      <select className="custom-select w-50" name="category" id="category" onChange={(e) => onInputChange(e.target.value)}>
         {categorynames.map((opt) => (
           <option
             key={opt.id}
