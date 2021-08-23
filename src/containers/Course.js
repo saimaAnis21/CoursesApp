@@ -30,16 +30,16 @@ const Course = () => {
     <div className="txt-align mt-10">
 
       { hasToken ? (
-        <p className="text-success">
-          {email}
-          {' '}
-          is logged in!!
-        </p>
+        <div>
+          <p className="text-success">
+            {email}
+            {' '}
+            is logged in!!
+          </p>
+          <CourseAddForm />
+          <CourseDisplay />
+        </div>
       ) : <p>Please Sign in or Sign up if you do not have an account!!</p>}
-      { hasToken ? <CourseAddForm /> : <p><a href="/signin">Sign in!</a></p>}
-      { hasToken ? <CourseDisplay /> : (
-        <p><a href="/signup">Sign up!</a></p>
-      )}
     </div>
   );
 };

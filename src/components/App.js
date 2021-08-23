@@ -25,6 +25,7 @@ const App = () => {
     <div>
       <h1 className="mt-50 text-decoration-underlin text-warning text-center">Crash Coursera</h1>
       <BrowserRouter>
+
         <div className="txt-align">
           <NavLink className="navbar-item" activeClassName="active-link" to="/signin">
             Sign in |
@@ -41,6 +42,7 @@ const App = () => {
         <Route exact path="/signup" component={SignUpForm} />
         <Route exact path="/signin" component={SignInForm} />
         <Route exact path="/my_courses" component={Course} />
+
       </BrowserRouter>
     </div>
   );
